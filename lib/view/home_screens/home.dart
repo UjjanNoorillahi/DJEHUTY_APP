@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/res/routes/routes_name.dart';
@@ -71,8 +72,11 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
+              HapticFeedback.mediumImpact();
               _scaffoldKey.currentState!
                   .openDrawer(); // Use GlobalKey to open the drawer
+
+              // Get.back();
             },
             child: Card(
               elevation: 0,
@@ -105,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   IconButton(
                       onPressed: () {
+                        HapticFeedback.mediumImpact();
                         Navigator.pop(context);
                       },
                       icon: const Icon(Icons.arrow_back_ios,
@@ -140,13 +145,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 title: Text(
                   _firstName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xff1C665E),
                   ),
                 ),
                 subtitle: Text(
                   _username,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xff1C665E),
                   ),
                 ),
@@ -155,6 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color(0xff3A9864),
                 ),
                 onTap: () {
+                  HapticFeedback.mediumImpact();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -180,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 onTap: () {
                   // Navigator.pop(context);
+                  HapticFeedback.mediumImpact();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -252,6 +259,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Clear the saved user data
                   await _userPreference.removeUser();
 
+                  HapticFeedback.mediumImpact();
+
                   // Navigate to the login screen
                   Get.offNamedUntil(RoutesName.loginScreen, (route) => false);
                 },
@@ -290,6 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   buildNavItem('assets/images/doctor_icon.svg', 0),
                   GestureDetector(
                     onTap: () {
+                      HapticFeedback.mediumImpact();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -317,7 +327,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildNavItem(String icon, int index) {
     return GestureDetector(
-      onTap: () => _onItemTapped(index),
+      onTap: () {
+        HapticFeedback.mediumImpact();
+        _onItemTapped(index);
+      },
       child: Container(
         padding: const EdgeInsets.all(0),
         decoration: BoxDecoration(

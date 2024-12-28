@@ -51,7 +51,7 @@ class LoginController extends GetxController {
     _api.loginApi(data).then(
       (value) {
         print("Value =======> $value");
-        loading.value = false;
+
         if (value['status'].toString() == 'success') {
           UserModel userModel = UserModel(
             user: User.fromJson(value['data']),
@@ -70,6 +70,7 @@ class LoginController extends GetxController {
           };
           _api.checkScreenStatus(dataTOCheckStatus).then((onValue) {
             print("onValue... =======> $onValue");
+            loading.value = false;
             if (onValue['data']['screen'] == 'UserProfileScreen') {
               Get.offNamedUntil(RoutesName.userProfile, (route) => false);
               Utils.snackBar('Login', 'Login Successfully');

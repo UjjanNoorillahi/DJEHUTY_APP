@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/res/app_url/app_url.dart';
 import 'package:getx_mvvm/res/routes/routes_name.dart';
@@ -174,6 +175,7 @@ class _HealthQuestionsScreenState extends State<HealthQuestionsScreen> {
                       ),
                       onChanged: (bool? value) {
                         setState(() {
+                          HapticFeedback.mediumImpact();
                           selectedRisks[label] = value ?? false;
                         });
                       },
@@ -199,7 +201,10 @@ class _HealthQuestionsScreenState extends State<HealthQuestionsScreen> {
                 ),
                 const SizedBox(height: 20),
                 ReusableButton(
-                  onPressed: _updateHealthQuestions,
+                  onPressed: () {
+                    HapticFeedback.heavyImpact();
+                    _updateHealthQuestions();
+                  },
                   isLoading: isLoading,
                   title: 'Save',
                 ),

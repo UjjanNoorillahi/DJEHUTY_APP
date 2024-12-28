@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/view/widgets/reusable_button.dart';
 
@@ -133,6 +134,8 @@ class LoginScreen extends StatelessWidget {
                 Obx(() => ReusableButton(
                       title: 'Sign In',
                       onPressed: () async {
+                        HapticFeedback.heavyImpact();
+
                         if (_logInFormKey.currentState!.validate()) {
                           loginController.loginApi();
                           // loginController.toggleLoginSignup();
@@ -173,6 +176,7 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.04),
                 InkWell(
                   onTap: () {
+                    HapticFeedback.heavyImpact();
                     // loginController.googleSignIn();
                     Get.snackbar(
                       "In Progress",

@@ -45,6 +45,7 @@ class UserProfileController extends GetxController {
 
   Future<void> pickImage(ImageSource source) async {
     final permission = await _requestPermission(source);
+    print("Permission: $permission");
     if (permission) {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
@@ -59,8 +60,10 @@ class UserProfileController extends GetxController {
 
   Future<bool> _requestPermission(ImageSource source) async {
     PermissionStatus status;
+
     if (source == ImageSource.camera) {
       status = await Permission.camera.request();
+      print("Camera Permission: $status");
     } else {
       status = await Permission.storage.request();
     }

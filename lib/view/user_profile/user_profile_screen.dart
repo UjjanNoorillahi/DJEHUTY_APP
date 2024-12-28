@@ -290,6 +290,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/view/user_profile/user_profile_controller.dart';
 import 'package:getx_mvvm/view/widgets/reusable_button.dart';
@@ -410,7 +411,10 @@ class UserProfileScreen extends StatelessWidget {
 
                   Obx(() => ReusableButton(
                       title: 'Save',
-                      onPressed: controller.saveProfile,
+                      onPressed: () {
+                        HapticFeedback.heavyImpact();
+                        controller.saveProfile();
+                      },
                       isLoading: controller.isLoading.value)),
                 ],
               ),

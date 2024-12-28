@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/view/auth/login_screen/login_controller.dart';
 import 'package:getx_mvvm/view/widgets/reusable_button.dart';
@@ -241,6 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Obx(() => ReusableButton(
                         title: 'Sign Up',
                         onPressed: () async {
+                          HapticFeedback.heavyImpact();
                           if (signUpController.passwordController.value.text !=
                               signUpController
                                   .confirmPasswordController.value.text) {
@@ -318,6 +320,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: screenHeight * 0.02),
                   InkWell(
                     onTap: () {
+                      HapticFeedback.heavyImpact();
                       // loginController.googleSignIn();
                       // snack bar to show sign in google will be added soon
 

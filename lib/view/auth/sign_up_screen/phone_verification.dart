@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm/view/widgets/reusable_button.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
@@ -154,7 +155,10 @@ class PhoneVerificationScreen extends StatelessWidget {
                   () => ReusableButton(
                     title:
                         controller.isLoading.value ? 'Verifying...' : 'Verify',
-                    onPressed: () => controller.verifyOtp(email),
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                      controller.verifyOtp(email);
+                    },
                     isLoading: controller.isLoading.value,
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AudioChatScreen extends StatefulWidget {
@@ -76,33 +77,39 @@ class _AudioChatScreenState extends State<AudioChatScreen> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
+                        HapticFeedback.heavyImpact();
                         micIsOn = !micIsOn;
                       });
                     },
                     child: (!micIsOn)
                         ? SvgPicture.asset(
-                      'assets/images/mic.svg',
-                      height: 100,
-                      width: 100,
-                    )
+                            'assets/images/mic.svg',
+                            height: 100,
+                            width: 100,
+                          )
                         : Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Image.asset('assets/images/mic_off2.png',
-                        height: 100,
-                        width: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Positioned(
-                          // top: 0,
-                          // right: 0,
-                          child: Image.asset('assets/images/mic_off1.png'),
-                        ),
-                                              ],
-                                            ),
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/mic_off2.png',
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                // top: 0,
+                                // right: 0,
+                                child:
+                                    Image.asset('assets/images/mic_off1.png'),
+                              ),
+                            ],
+                          ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      HapticFeedback.mediumImpact();
+                      Navigator.pop(context);
+                    },
                     icon: Icon(
                       Icons.cancel_outlined,
                       size: 50,
@@ -112,7 +119,9 @@ class _AudioChatScreenState extends State<AudioChatScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 16), // Bottom padding to ensure spacing at the very bottom
+            const SizedBox(
+                height:
+                    16), // Bottom padding to ensure spacing at the very bottom
           ],
         ),
       ),

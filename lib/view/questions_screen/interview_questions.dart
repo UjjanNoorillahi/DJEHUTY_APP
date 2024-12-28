@@ -310,6 +310,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../home_screens/home.dart';
@@ -434,6 +435,7 @@ class _SelectGoalsState extends State<SelectGoals> {
                 ),
                 onChanged: (bool? value) {
                   setState(() {
+                    HapticFeedback.mediumImpact();
                     selectedRisks[label] = value ?? false;
                   });
 
@@ -620,6 +622,7 @@ class _QuestionFourState extends State<QuestionFour> {
                 ),
                 onChanged: (bool? value) {
                   setState(() {
+                    HapticFeedback.mediumImpact();
                     selectedRisks[label] = value ?? false;
                   });
 
@@ -675,6 +678,7 @@ class _QuestionFiveOptionsState extends State<QuestionFiveOptions> {
               return GestureDetector(
                 onTap: () {
                   setState(() {
+                    HapticFeedback.heavyImpact();
                     selectedNumber = index; // Set the selected number
                   });
                   controller.updateSelectedNumber(
@@ -994,6 +998,7 @@ class InterviewQuestionsScreen extends StatelessWidget {
                         () => ReusableButton(
                           title: 'Submit',
                           onPressed: () {
+                            HapticFeedback.heavyImpact();
                             if (_logInFormKey.currentState!.validate()) {
                               controller.submitInterviewQuestions();
                             }
